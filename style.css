@@ -11,9 +11,9 @@
    Убираем внутренние отступы слева тегам списков,
    у которых есть атрибут class
   */
-:where(ul, ol):where([class]) {
+/* :where(ul, ol):where([class]) {
   padding-left: 0;
-}
+} */
 
 /**
    Убираем внешние отступы body и двум другим тегам,
@@ -105,8 +105,8 @@ body {
   --color-dark-gray: #404040;
   --color-light-gray: #c4c4c4;
 
-  border-radius: 30px;
-  border: 1px solid var(--color-light);
+  --border-radius: 30px;
+  --border: 1px solid var(--color-light);
 
   --font-family-base: "Heebo", sans-serif;
   --font-family-accent: "Yantramanav", sans-serif;
@@ -128,6 +128,18 @@ body {
   font-weight: 300;
 }
 
+a {
+  color: var(--color-light);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
 .container {
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
   margin-inline: auto;
@@ -144,6 +156,25 @@ h6 {
   text-transform: uppercase;
 }
 
+.button {
+  display: inline-flex;
+  height: 38px;
+  align-items: center;
+  padding-inline: 26px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  line-height: 24px;
+  text-transform: uppercase;
+  background-color: var(--color-light);
+  border: none;
+  border-radius: var(--border-radius);
+}
+
+button:hover {
+  background-color: var(--color-light-gray);
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -152,7 +183,43 @@ h6 {
   gap: 20px;
 }
 
+.header-logo {
+  flex-shrink: 0;
+}
+
+/* .header-menu {
+  display: flex;
+  flex-direction: column;
+} */
+
 .header-menu-list {
   display: flex;
   flex-direction: row;
+  gap: 50px;
+}
+
+.header-menu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 90px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+}
+
+.header-menu-link.is-current::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
 }
